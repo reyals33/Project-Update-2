@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Data - Open Air/Open Heart Project</title>
+    <link rel="stylesheet" href="styles-page.css">
+    <style>
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab.active {
+            background-color: white;
+            border-bottom: 3px solid #c6e2ff;
+            font-weight: bold;
+        }
+
+        .data-content {
+            display: none;
+        }
+
+        .data-content.active {
+            display: block;
+        }
+        
+        .data-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .vital-stats {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            width: 48%;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stat-unit {
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .placeholder-text {
+            color: #999;
+            text-align: center;
+        }
+        
+        .friend-network {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .network-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #c6e2ff;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(60deg);
+            transform-style: preserve-3d;
+        }
+        
+        .friend {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ffd6e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+        }
+        
+        .friend:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            cursor: pointer;
+        }
+        
+        .friend-1 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -150%) rotateX(-60deg);
+            background-color: #c6e2ff;
+        }
+        
+        .friend-2 {
+            top: 50%;
+            left: 50%;
+            transform: translate(65%, -42%) rotateX(-60deg);
+        }
+        
+        .friend-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(40%, 80%) rotateX(-60deg);
+        }
+        
+        .friend-4 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-140%, 80%) rotateX(-60deg);
+        }
+        
+        .friend-5 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-165%, -42%) rotateX(-60deg);
+            background-color: #c6e2ff;
+        }
+        
+        .heartbeat {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba(255, 100, 130, 0.5);
+            transform: scale(1);
+            animation: pulse 1.5s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+        }
+        
+        .friend-tooltip {
+            position: absolute;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 100;
+            width: 150px;
+        }
+        
+        .friend:hover + .friend-tooltip {
+            display: block;
+        }
+        
+        .friend-stats {
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .friend-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="cloud"></div>
+                    <span>LOGO</span>
+                    <div class="heart"></div>
+                </div>
+            </div>
+            <h1>Open Air/Open Heart Project</h1>
+        </header>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="index-page.html">Home</a></li>
+                <li><a href="how-it-works-page.html">How it works</a></li>
+                <li><a href="sign-up-sign-in-page.html">Sign In/Sign Up</a></li>
+                <li><a href="data-display-page.html">Data Display</a></li>
+                <li><a href="about-us-page.html">About Us</a></li>
+                <li><a href="contact-page.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <div class="content-box full-width">
+                <div class="pink-section">
+                    <h2>My Heart Data</h2>
+                    
+                    <div class="tab-container">
+                        <div class="tab active" id="my-data-tab">My Vitals</div>
+                        <div class="tab" id="friend-network-tab">Friend Network</div>
+                    </div>
+                    
+                    <!-- My Data Content -->
+                    <div class="data-content active" id="my-data-content">
+                        <div class="data-container">
+                            <h3>Current Vitals</h3>
+                            <div class="vital-stats">
+                                <div class="stat-box">
+                                    <div class="stat-label">Heart Rate</div>
+                                    <div class="stat-value">72 <span class="stat-unit">BPM</span></div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Blood Oxygen</div>
+                                    <div class="stat-value">98 <span class="stat-unit">%</span></div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Temperature</div>
+                                    <div class="stat-value">98.6 <span class="stat-unit">°F</span></div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Heart Rate Variability</div>
+                                    <div class="stat-value">45 <span class="stat-unit">ms</span></div>
+                                </div>
+                            </div>
+                            
+                            <h3>Historical Data</h3>
+                            <div class="chart-container">
+                                <div class="placeholder-text">
+                                    <p>Heart Rate & O2 Trends</p>
+                                    <p>(Data visualization will appear here once connected)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <div class="placeholder-text">
+                                    <p>Temperature Readings</p>
+                                    <p>(Data visualization will appear here once connected)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Friend Network Content -->
+                    <div class="data-content" id="friend-network-content">
+                        <div class="data-container">
+                            <h3>Friend Heart Network</h3>
+                            <p>View your friends' current heart rates in real-time. Click on a friend to see more details.</p>
+                            
+                            <div class="friend-network">
+                                <div class="network-circle"></div>
+                                
+                                <!-- Friend 1 -->
+                                <div class="friend friend-1">
+                                    <div class="heartbeat"></div>
+                                    <span>ML</span>
+                                </div>
+                                <div class="friend-tooltip" style="top: 60px; left: 50%;">
+                                    <div class="friend-name">Mindy Lovette</div>
+                                    <div class="friend-stats">
+                                        Heart Rate: 68 BPM<br>
+                                        O2: 99%<br>
+                                        Connected: 2 hrs ago
+                                    </div>
+                                </div>
+                                
+                                <!-- Friend 2 -->
+                                <div class="friend friend-2">
+                                    <div class="heartbeat"></div>
+                                    <span>LM</span>
+                                </div>
+                                <div class="friend-tooltip" style="top: 140px; right: 80px;">
+                                    <div class="friend-name">Lisa Mitchell</div>
+                                    <div class="friend-stats">
+                                        Heart Rate: 75 BPM<br>
+                                        O2: 97%<br>
+                                        Connected: Just now
+                                    </div>
+                                </div>
+                                
+                                <!-- Friend 3 -->
+                                <div class="friend friend-3">
+                                    <div class="heartbeat"></div>
+                                    <span>RK</span>
+                                </div>
+                                <div class="friend-tooltip" style="bottom: 60px; right: 100px;">
+                                    <div class="friend-name">Robert Kim</div>
+                                    <div class="friend-stats">
+                                        Heart Rate: 62 BPM<br>
+                                        O2: 98%<br>
+                                        Connected: 5 min ago
+                                    </div>
+                                </div>
+                                
+                                <!-- Friend 4 -->
+                                <div class="friend friend-4">
+                                    <div class="heartbeat"></div>
+                                    <span>AT</span>
+                                </div>
+                                <div class="friend-tooltip" style="bottom: 60px; left: 100px;">
+                                    <div class="friend-name">Amy Thomas</div>
+                                    <div class="friend-stats">
+                                        Heart Rate: 70 BPM<br>
+                                        O2: 96%<br>
+                                        Connected: 30 min ago
+                                    </div>
+                                </div>
+                                
+                                <!-- Friend 5 -->
+                                <div class="friend friend-5">
+                                    <div class="heartbeat"></div>
+                                    <span>DP</span>
+                                </div>
+                                <div class="friend-tooltip" style="top: 140px; left: 80px;">
+                                    <div class="friend-name">David Patel</div>
+                                    <div class="friend-stats">
+                                        Heart Rate: 65 BPM<br>
+                                        O2: 99%<br>
+                                        Connected: Just now
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="placeholder-text" style="margin-top: 20px">Note: This is a placeholder visualization. Real-time data will be implemented when backend systems are connected.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="yellow-section">
+                    <p>Remember: Sharing your heartbeat creates meaningful connections!</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Open Air/Open Heart</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        const myDataTab = document.getElementById('my-data-tab');
+        const friendNetworkTab = document.getElementById('friend-network-tab');
+        const myDataContent = document.getElementById('my-data-content');
+        const friendNetworkContent = document.getElementById('friend-network-content');
+
+        myDataTab.addEventListener('click', function() {
+            myDataTab.classList.add('active');
+            friendNetworkTab.classList.remove('active');
+            myDataContent.classList.add('active');
+            friendNetworkContent.classList.remove('active');
+        });
+
+        friendNetworkTab.addEventListener('click', function() {
+            friendNetworkTab.classList.add('active');
+            myDataTab.classList.remove('active');
+            friendNetworkContent.classList.add('active');
+            myDataContent.classList.remove('active');
+        });
+        
+        // Simulate different heartbeat rates for each friend
+        const friends = document.querySelectorAll('.friend');
+        friends.forEach((friend, index) => {
+            const heartbeat = friend.querySelector('.heartbeat');
+            // Slightly different animation durations to simulate different heart rates
+            const duration = 1.2 + (index * 0.2);
+            heartbeat.style.animationDuration = duration + 's';
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-5<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,7 +37,7 @@
             <div class="content-box full-width">
                 <div class="pink-section">
                     <h2>How It Works</h2>
-                    <p>The Open Air/Open Heart Project connects community members through three simple steps:</p>
+                    <p>The Open Air/Open Heart Project connects community members through four simple steps:</p>
                     
                     <div class="steps">
                         <div class="step">
@@ -63,7 +63,7 @@
                 </div>
                 
                 <div class="green-section">
-                    <p>Ready to get started? <a href="sign-up.html" class="button">Sign Up Now</a></p>
+                    <p>Ready to get started? <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a></p>
                 </div>
             </div>
         </main>
@@ -73,5 +73,27 @@
             <p>&copy; 2025 Open Air/Open Heart</p>
         </footer>
     </div>
+    
+    <script>
+        // Script to activate sign-up tab when clicking "Sign Up Now" button
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the URL has a hash for sign-up
+            if (window.location.hash === '#sign-up') {
+                // We're on the sign-up page with the sign-up hash
+                // This script will only run if we're on the sign-up-sign-in-page.html page
+                const signUpTab = document.getElementById('sign-up-tab');
+                const signInTab = document.getElementById('sign-in-tab');
+                const signUpForm = document.getElementById('sign-up-form');
+                const signInForm = document.getElementById('sign-in-form');
+                
+                if (signUpTab && signInTab && signUpForm && signInForm) {
+                    signUpTab.classList.add('active');
+                    signInTab.classList.remove('active');
+                    signUpForm.classList.add('active');
+                    signInForm.classList.remove('active');
+                }
+            }
+        });
+    </script>
 </body>
 </html>

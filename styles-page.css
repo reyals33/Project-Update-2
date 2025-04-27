@@ -154,6 +154,18 @@ main {
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .full-width {
@@ -194,6 +206,12 @@ h3 {
     margin-bottom: 10px;
     color: var(--text-dark);
     font-size: clamp(1rem, 3vw, 1.4rem);
+}
+
+h4 {
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
 }
 
 p {
@@ -344,6 +362,11 @@ button:hover {
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
+.contact-photo img {
+    width: 100%;
+    height: auto;
+}
+
 .contact-name {
     font-size: 1.5em;
     font-weight: bold;
@@ -406,7 +429,75 @@ button:hover {
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
+.map-marker {
+    width: 30px;
+    height: 30px;
+    background-color: #ffd6e0;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    position: relative;
+    animation: bounce 1s infinite alternate;
+    margin-bottom: 15px;
+}
+
+@keyframes bounce {
+    from {
+        transform: rotate(-45deg) translateY(0);
+    }
+    to {
+        transform: rotate(-45deg) translateY(-10px);
+    }
+}
+
+.map-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    text-align: center;
+    flex-direction: column;
+}
+
 /* About Us Page Styles */
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.member-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--primary-cloud);
+    border: 3px solid var(--accent-cloud);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.member-photo img {
+    width: 100%;
+    height: auto;
+}
+
+.member-info h3 {
+    margin-top: 0;
+    color: var(--primary-heart);
+}
+
 .mission-box {
     background-color: var(--primary-cloud);
     padding: 20px;
@@ -447,6 +538,19 @@ button:hover {
     position: relative;
     width: 50%;
     box-sizing: border-box;
+    opacity: 0;
+}
+
+.timeline-item.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
 }
 
 .timeline-item::after {
@@ -459,14 +563,6 @@ button:hover {
     border-radius: 50%;
     top: 15px;
     z-index: 1;
-}
-
-.left {
-    left: 0;
-}
-
-.right {
-    left: 50%;
 }
 
 .left::after {
@@ -489,36 +585,14 @@ button:hover {
     color: var(--primary-heart);
 }
 
-.team-member {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
+/* Data Display Page Styles */
+.data-container {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
-.member-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: var(--primary-cloud);
-    border: 3px solid var(--accent-cloud);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    overflow: hidden;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-.member-info h3 {
-    margin-top: 0;
-    color: var(--primary-heart);
-}
-
-/* Data Display Page Styles */
 .vital-stats {
     display: flex;
     justify-content: space-between;
@@ -534,6 +608,7 @@ button:hover {
     background: linear-gradient(to bottom right, #fff, #f5f5f5);
     box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .stat-box:hover {
@@ -580,14 +655,18 @@ button:hover {
     font-style: italic;
 }
 
+/* Enhanced Friend Network - 3D Visualization */
 .friend-network {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 500px;
     background: linear-gradient(to bottom right, #fff, #f5f5f5);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
 }
 
 .network-circle {
@@ -600,6 +679,17 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%) rotateX(60deg);
     transform-style: preserve-3d;
+    animation: rotate 30s linear infinite;
+    transition: transform 0.4s ease;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotateX(60deg) rotateZ(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotateX(60deg) rotateZ(360deg);
+    }
 }
 
 .friend {
@@ -616,13 +706,46 @@ button:hover {
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     transform-style: preserve-3d;
     transition: all 0.3s ease;
+    z-index: 5;
 }
 
 .friend:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateZ(20px);
     z-index: 10;
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.friend-1 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%) rotateX(-60deg) translateZ(30px);
+    background-color: var(--accent-cloud);
+}
+
+.friend-2 {
+    top: 50%;
+    left: 50%;
+    transform: translate(65%, -42%) rotateX(-60deg) translateZ(30px);
+}
+
+.friend-3 {
+    top: 50%;
+    left: 50%;
+    transform: translate(40%, 80%) rotateX(-60deg) translateZ(30px);
+}
+
+.friend-4 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-140%, 80%) rotateX(-60deg) translateZ(30px);
+}
+
+.friend-5 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-165%, -42%) rotateX(-60deg) translateZ(30px);
+    background-color: var(--accent-cloud);
 }
 
 .heartbeat {
@@ -647,6 +770,35 @@ button:hover {
     100% {
         transform: scale(1);
         opacity: 0.7;
+    }
+}
+
+/* Animated Vitality Stream */
+.vitality-stream {
+    position: absolute;
+    width: 90px;
+    height: 20px;
+    top: -22px;
+    left: -15px;
+    overflow: hidden;
+}
+
+.vitality-line {
+    position: absolute;
+    width: 90px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right, transparent, transparent 40%, var(--primary-heart) 42%, var(--primary-heart) 48%, var(--light-heart) 50%, var(--primary-heart) 52%, var(--primary-heart) 58%, transparent 60%, transparent);
+    animation: moveHeartbeat 1.5s linear infinite;
+}
+
+@keyframes moveHeartbeat {
+    0% {
+        transform: translateX(-45px);
+    }
+    100% {
+        transform: translateX(45px);
     }
 }
 
@@ -677,125 +829,567 @@ button:hover {
     color: var(--primary-heart);
 }
 
-/* Sign Up/Sign In Page Styles */
-.forgot-password {
-    text-align: right;
-    margin-top: 10px;
-    font-size: 0.9em;
+/* Enhanced Data Visualizations */
+.heart-rate-chart {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 20px;
 }
 
-.forgot-password a {
-    color: var(--primary-heart);
-    text-decoration: none;
-    transition: color 0.3s;
+.heart-rate-line {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
 }
 
-.forgot-password a:hover {
-    color: var(--accent-heart);
-    text-decoration: underline;
+.heart-beat {
+    position: absolute;
+    height: 100%;
+    width: 400%;
+    background: linear-gradient(to right, 
+        rgba(0,0,0,0) 0%, rgba(0,0,0,0) 5%, 
+        var(--primary-heart) 5%, var(--primary-heart) 6%, 
+        rgba(0,0,0,0) 6%, rgba(0,0,0,0) 8%, 
+        var(--primary-heart) 8%, var(--primary-heart) 9%, 
+        rgba(0,0,0,0) 9%, rgba(0,0,0,0) 14%, 
+        var(--primary-heart) 14%, var(--primary-heart) 15%, 
+        var(--accent-heart) 15%, var(--accent-heart) 17%, 
+        var(--primary-heart) 17%, var(--primary-heart) 19%, 
+        rgba(0,0,0,0) 19%, rgba(0,0,0,0) 25%
+    );
+    background-size: 25% 100%;
+    background-repeat: repeat-x;
+    animation: heartBeatMove 5s linear infinite;
 }
 
-/* General Link Styles */
-a {
-    color: var(--primary-heart);
-    transition: color 0.3s;
+@keyframes heartBeatMove {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-25%);
+    }
 }
 
-a:hover {
-    color: var(--accent-heart);
+.temperature-visualization {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Button Styles */
-.button {
-    display: inline-block;
-    background: linear-gradient(to right, var(--primary-heart), var(--accent-heart));
-    padding: 12px 24px;
+.temperature-visualization h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.thermometer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 150px;
+    margin-bottom: 30px;
+}
+
+.thermometer {
+    width: 20px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 10px;
+    opacity: 0;
+}
+
+.thermometer::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, #ff5e5e, #ff9d9d);
+    height: 0%;
+    border-radius: 0 0 8px 8px;
+    transition: height 1s ease;
+}
+
+.thermometer.thermometer-animate::before {
+    height: 65%;
+}
+
+.thermometer:nth-child(1).thermometer-animate::before {
+    height: 55%;
+}
+
+.thermometer:nth-child(2).thermometer-animate::before {
+    height: 65%;
+}
+
+.thermometer:
+
+/* Simple Heart Monitor */
+.simple-heart-monitor {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: #f8f8f8;
     border-radius: 8px;
-    color: var(--text-light);
-    text-decoration: none;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid #eaeaea;
+}
+
+/* Background grid */
+.monitor-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* The heart rate line with animation */
+.heart-line {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 L100,50 L110,40 L120,50 L130,10 L140,90 L150,50 L160,60 L170,50 L300,50 L310,40 L320,50 L330,10 L340,90 L350,50 L360,60 L370,50 L500,50 L510,40 L520,50 L530,10 L540,90 L550,50 L560,60 L570,50 L600,50' fill='none' stroke='%23ff3333' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    animation: heart-beat 4s linear infinite;
+}
+
+@keyframes heart-beat {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Status indicator */
+.monitor-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
     font-weight: bold;
-    transition: all 0.3s;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2px 8px;
+    border-radius: 12px;
 }
 
-.button:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transform: translateY(-3px);
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #ff3333;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: blink 1s infinite;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Friend Network Heartbeat Animation */
+.friend .heartbeat {
+    width: 10px;
+    height: 10px;
+    background-color: #ff3333;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #ff3333;
+    animation: friend-pulse 1.2s infinite;
+}
+
+@keyframes friend-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.7);
+        transform: translate(-50%, -50%) scale(0.8);
     }
-    
-    .logo-container {
-        margin-right: 0;
-        margin-bottom: 15px;
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 51, 51, 0);
+        transform: translate(-50%, -50%) scale(1.2);
     }
-    
-    main {
-        flex-direction: column;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    nav ul li {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .timeline::after {
-        left: 31px;
-    }
-    
-    .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-    }
-    
-    .timeline-item::after {
-        left: 21px;
-    }
-    
-    .left::after, .right::after {
-        left: 21px;
-    }
-    
-    .right {
-        left: 0;
-    }
-    
-    .team-member {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .member-photo {
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-    
-    .contact-card {
-        min-width: 100%;
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 51, 51, 0);
+        transform: translate(-50%, -50%) scale(0.8);
     }
 }
 
-@media (min-width: 769px) and (max-width: 1200px) {
-    .container {
-        padding: 15px;
+/* Simplified vitality line for friends */
+.vitality-line {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background: linear-gradient(to right, rgba(255, 51, 51, 0), rgba(255, 51, 51, 1), rgba(255, 51, 51, 0));
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Simple Heart Monitor */
+.simple-heart-monitor {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid #eaeaea;
+}
+
+/* Background grid */
+.monitor-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* The heart rate line with animation */
+.heart-line {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 L100,50 L110,40 L120,50 L130,10 L140,90 L150,50 L160,60 L170,50 L300,50 L310,40 L320,50 L330,10 L340,90 L350,50 L360,60 L370,50 L500,50 L510,40 L520,50 L530,10 L540,90 L550,50 L560,60 L570,50 L600,50' fill='none' stroke='%23ff3333' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    animation: heart-beat 4s linear infinite;
+}
+
+@keyframes heart-beat {
+    0% {
+        transform: translateX(0);
     }
-    
-    nav ul li {
-        flex: 1 1 120px;
-    }
-    
-    .stat-box {
-        flex: 1 1 45%;
+    100% {
+        transform: translateX(-50%);
     }
 }
+
+/* Status indicator */
+.monitor-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #ff3333;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Friend Network Improvements */
+.friend {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.friend-1 {
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -150%) rotateX(-60deg) translateZ(30px);
+}
+
+.friend-2 {
+    top: 37%;
+    right: 30%;
+    transform: translate(65%, -42%) rotateX(-60deg) translateZ(30px);
+}
+
+.friend-3 {
+    bottom: 20%;
+    right: 35%;
+    transform: translate(40%, 80%) rotateX(-60deg) translateZ(30px);
+}
+
+.friend-4 {
+    bottom: 20%;
+    left: 35%;
+    transform: translate(-140%, 80%) rotateX(-60deg) translateZ(30px);
+}
+
+.friend-5 {
+    top: 37%;
+    left: 30%;
+    transform: translate(-165%, -42%) rotateX(-60deg) translateZ(30px);
+}
+
+/* Friend heartbeat animation */
+.friend .heartbeat {
+    width: 10px;
+    height: 10px;
+    background-color: #ff3333;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #ff3333;
+    animation: friend-pulse 1.2s infinite;
+}
+
+@keyframes friend-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.7);
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 51, 51, 0);
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 51, 51, 0);
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+/* Vitality line */
+.vitality-line {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background: linear-gradient(to right, rgba(255, 51, 51, 0), rgba(255, 51, 51, 1), rgba(255, 51, 51, 0));
+    opacity: 0.6;
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0; }
+}
+
+/* Friend tooltip */
+.friend-tooltip {
+    position: absolute;
+    width: 180px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.friend-1 .friend-tooltip {
+    top: -120px;
+    left: -65px;
+}
+
+.friend-2 .friend-tooltip {
+    top: -120px;
+    right: -65px;
+}
+
+.friend-3 .friend-tooltip {
+    bottom: -120px;
+    right: -65px;
+}
+
+.friend-4 .friend-tooltip {
+    bottom: -120px;
+    left: -65px;
+}
+
+.friend-5 .friend-tooltip {
+    top: -120px;
+    left: -65px;
+}
+
+.friend:hover .friend-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.friend-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.friend-stats {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Friend heart rate animation when hovering */
+.friend-heartbeat-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    background-color: white;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.friend:hover .friend-heartbeat-container {
+    opacity: 1;
+    visibility: visible;
+    animation: container-pulse 1.2s infinite;
+}
+
+@keyframes container-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.3); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 51, 51, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 51, 51, 0); }
+}
+
+.friend-heart-line {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'%3E%3Cpath d='M0,25 L10,25 L15,20 L20,25 L25,5 L30,45 L35,25 L40,30 L45,25 L55,25 L60,20 L65,25 L70,5 L75,45 L80,25 L85,30 L90,25 L100,25' fill='none' stroke='%23ff3333' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    animation: friend-heart-beat 2s linear infinite;
+}
+
+@keyframes friend-heart-beat {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Highlight effect when hovering */
+.friend:hover {
+    transform: scale(1.1) translateZ(40px) !important;
+    box-shadow: 0 8px 16px rgba(255, 51, 51, 0.3);
+    border: 2px solid rgba(255, 51, 51, 0.7);
+    z-index: 10;
+}
+
+.friend:hover .vitality-line {
+    opacity: 1;
+    animation: hover-shimmer 0.8s infinite;
+}
+
+@keyframes hover-shimmer {
+    0% { opacity: 0.5; width: 0%; left: 0; }
+    50% { opacity: 1; width: 100%; left: 0; }
+    100% { opacity: 0.5; width: 0%; left: 100%; }
+}
+
+/* Network circle styling */
+.network-circle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px dashed rgba(255, 51, 51, 0.3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.network-circle::before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 51, 51, 0.3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.network-circle::after {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 51, 51, 0.3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Friend Network container */
+.friend-network {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+    perspective: 1200px;
+    transform-style: preserve-3d;

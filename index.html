@@ -54,7 +54,7 @@
                 </div>
                 <div class="yellow-section">
                     <!-- Content for right yellow section -->
-                    <p>Learn how to receive your wireless heart monitor live stream device to get started</p>
+                    <p>Learn how to receive your wireless heart monitor live stream device to get started. <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a></p>
                 </div>
             </div>
         </main>
@@ -72,5 +72,17 @@
             <p>&copy; 2025 Open Air/Open Heart</p>
         </footer>
     </div>
+    
+    <script>
+        // Simple animation for the heart beat effect on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const securityBox = document.querySelector('.security-box');
+            securityBox.classList.add('pulse-animation');
+            
+            setTimeout(() => {
+                securityBox.classList.remove('pulse-animation');
+            }, 2000);
+        });
+    </script>
 </body>
 </html>

@@ -5,104 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up/Sign In - Open Air/Open Heart Project</title>
     <link rel="stylesheet" href="styles-page.css">
-    <style>
-        /* Additional styles for the combined sign-up/sign-in page */
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        
-        button {
-            background-color: #c6e2ff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        
-        button:hover {
-            background-color: #a5d3ff;
-        }
-
-        .tab-container {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            background-color: #f5f5f5;
-            cursor: pointer;
-            border-radius: 5px 5px 0 0;
-        }
-
-        .tab.active {
-            background-color: white;
-            border-bottom: 3px solid #c6e2ff;
-            font-weight: bold;
-        }
-
-        .form-content {
-            display: none;
-        }
-
-        .form-content.active {
-            display: block;
-        }
-
-        .forgot-password {
-            text-align: right;
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-
-        .separator {
-            text-align: center;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .separator::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: #ddd;
-            z-index: 1;
-        }
-
-        .separator span {
-            background-color: white;
-            padding: 0 10px;
-            position: relative;
-            z-index: 2;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -144,7 +46,7 @@
                         
                         <!-- Sign In Form -->
                         <div class="form-content active" id="sign-in-form">
-                            <form action="#" method="post">
+                            <form action="data-display-page.html" method="get" onsubmit="return validateSignIn()">
                                 <div class="form-group">
                                     <label for="signin-email">Email Address</label>
                                     <input type="email" id="signin-email" name="email" required>
@@ -156,7 +58,7 @@
                                 </div>
                                 
                                 <div class="forgot-password">
-                                    <a href="#">Forgot password?</a>
+                                    <a href="#" onclick="showResetPassword()">Forgot password?</a>
                                 </div>
                                 
                                 <button type="submit">Sign In</button>
@@ -165,7 +67,7 @@
                         
                         <!-- Sign Up Form -->
                         <div class="form-content" id="sign-up-form">
-                            <form action="#" method="post">
+                            <form action="data-display-page.html" method="get" onsubmit="return validateSignUp()">
                                 <div class="form-group">
                                     <label for="fullname">Full Name</label>
                                     <input type="text" id="fullname" name="fullname" required>
@@ -194,6 +96,22 @@
                                 <button type="submit">Create Account</button>
                             </form>
                         </div>
+                        
+                        <!-- Password Reset Form (Hidden by Default) -->
+                        <div class="form-content" id="reset-password-form">
+                            <form action="#" method="post" onsubmit="return validateResetPassword()">
+                                <div class="form-group">
+                                    <label for="reset-email">Email Address</label>
+                                    <input type="email" id="reset-email" name="reset-email" required>
+                                </div>
+                                
+                                <button type="submit">Reset Password</button>
+                                
+                                <div style="text-align: center; margin-top: 15px;">
+                                    <a href="#" onclick="showSignIn()">Back to Sign In</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 
@@ -215,19 +133,132 @@
         const signUpTab = document.getElementById('sign-up-tab');
         const signInForm = document.getElementById('sign-in-form');
         const signUpForm = document.getElementById('sign-up-form');
+        const resetPasswordForm = document.getElementById('reset-password-form');
 
         signInTab.addEventListener('click', function() {
+            showSignIn();
+        });
+
+        signUpTab.addEventListener('click', function() {
+            showSignUp();
+        });
+        
+        function showSignIn() {
             signInTab.classList.add('active');
             signUpTab.classList.remove('active');
             signInForm.classList.add('active');
             signUpForm.classList.remove('active');
-        });
-
-        signUpTab.addEventListener('click', function() {
+            resetPasswordForm.classList.remove('active');
+        }
+        
+        function showSignUp() {
             signUpTab.classList.add('active');
             signInTab.classList.remove('active');
             signUpForm.classList.add('active');
             signInForm.classList.remove('active');
+            resetPasswordForm.classList.remove('active');
+        }
+        
+        function showResetPassword() {
+            signInTab.classList.remove('active');
+            signUpTab.classList.remove('active');
+            signInForm.classList.remove('active');
+            signUpForm.classList.remove('active');
+            resetPasswordForm.classList.add('active');
+            return false;
+        }
+        
+        function validateSignIn() {
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            
+            if (email === '' || password === '') {
+                alert('Please fill out all fields');
+                return false;
+            }
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+            
+            // In a real app, we would check credentials with a server
+            // For demo purposes, we'll just simulate a successful login
+            localStorage.setItem('userLoggedIn', 'true');
+            localStorage.setItem('userEmail', email);
+            
+            return true;
+        }
+        
+        function validateSignUp() {
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (fullname === '' || email === '' || password === '' || confirmPassword === '') {
+                alert('Please fill out all required fields');
+                return false;
+            }
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+            
+            // Password match validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return false;
+            }
+            
+            // Password strength validation
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return false;
+            }
+            
+            // In a real app, we would send this data to a server
+            // For demo purposes, we'll just simulate a successful sign-up
+            localStorage.setItem('userLoggedIn', 'true');
+            localStorage.setItem('userName', fullname);
+            localStorage.setItem('userEmail', email);
+            
+            return true;
+        }
+        
+        function validateResetPassword() {
+            const email = document.getElementById('reset-email').value;
+            
+            if (email === '') {
+                alert('Please enter your email address');
+                return false;
+            }
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+            
+            // In a real app, we would send a password reset email
+            // For demo purposes, we'll just show a message
+            alert('Password reset instructions have been sent to your email');
+            showSignIn();
+            
+            return false; // Prevent form submission
+        }
+        
+        // Check if the URL has a hash for sign-up
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#sign-up') {
+                showSignUp();
+            }
         });
     </script>
 </body>

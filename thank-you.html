@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Open Air/Open Heart Project</title>
+    <link rel="stylesheet" href="styles-page.css">
+    <style>
+        .success-message {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--primary-cloud);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-heart);
+        }
+        
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--accent-heart);
+            stroke-miterlimit: 10;
+            margin: 10% auto;
+            box-shadow: inset 0px 0px 0px var(--accent-heart);
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+        
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--accent-heart);
+            fill: none;
+            animation: stroke .6s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+        }
+        
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke .3s cubic-bezier(0.650, 0.000, 0.450, 1.000) .8s forwards;
+        }
+        
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+        
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px var(--primary-cloud);
+            }
+        }
+        
+        .message-received {
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .message-field {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .message-field:last-child {
+            border-bottom: none;
+        }
+        
+        .message-label {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .message-content {
+            color: var(--text-dark);
+        }
+        
+        .return-link {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(to right, var(--primary-heart), var(--accent-heart));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .return-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="cloud"></div>
+                    <span>LOGO</span>
+                    <div class="heart"></div>
+                </div>
+            </div>
+            <h1>Open Air/Open Heart Project</h1>
+        </header>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works-page.html">How it works</a></li>
+                <li><a href="sign-up-sign-in-page.html">Sign In/Sign Up</a></li>
+                <li><a href="data-display-page.html">Data Display</a></li>
+                <li><a href="about-us-page.html">About Us</a></li>
+                <li><a href="contact-page.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <div class="content-box full-width">
+                <div class="pink-section">
+                    <div class="success-message">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                        <h2>Thank You!</h2>
+                        <p>Your message has been received. We'll get back to you as soon as possible.</p>
+                        
+                        <div class="message-received" id="message-preview">
+                            <!-- Will be filled by JavaScript -->
+                        </div>
+                        
+                        <a href="index.html" class="return-link">Return to Home</a>
+                    </div>
+                </div>
+                
+                <div class="yellow-section">
+                    <p>Connect with us today to learn more about the Open Air/Open Heart Project!</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Open Air/Open Heart</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve stored form data
+            const name = localStorage.getItem('contactName') || '';
+            const email = localStorage.getItem('contactEmail') || '';
+            const subject = localStorage.getItem('contactSubject') || '';
+            const message = localStorage.getItem('contactMessage') || '';
+            
+            // Create message preview
+            const messagePreview = document.getElementById('message-preview');
+            
+            if (name && email && subject && message) {
+                messagePreview.innerHTML = `
+                    <div class="message-field">
+                        <div class="message-label">From:</div>
+                        <div class="message-content">${name} (${email})</div>
+                    </div>
+                    <div class="message-field">
+                        <div class="message-label">Subject:</div>
+                        <div class="message-content">${subject}</div>
+                    </div>
+                    <div class="message-field">
+                        <div class="message-label">Message:</div>
+                        <div class="message-content">${message}</div>
+                    </div>
+                `;
+            } else {
+                messagePreview.innerHTML = `
+                    <p>No message details available.</p>
+                `;
+            }
+            
+            // Clear the stored data
+            localStorage.removeItem('contactName');
+            localStorage.removeItem('contactEmail');
+            localStorage.removeItem('contactSubject');
+            localStorage.removeItem('contactMessage');
+        });
+    </script>
+</body>
+</html>

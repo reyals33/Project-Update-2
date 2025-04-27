@@ -5,198 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Open Air/Open Heart Project</title>
     <link rel="stylesheet" href="styles-page.css">
-    <style>
-        .contact-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-        
-        .contact-card {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            margin: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .contact-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            background-color: #e2e2e2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .contact-photo img {
-            width: 100%;
-            height: auto;
-        }
-        
-        .contact-name {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .contact-title {
-            font-size: 1em;
-            color: #666;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .contact-details {
-            font-size: 1em;
-            line-height: 1.8;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            background-color: #c6e2ff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-        
-        .detail-text {
-            flex: 1;
-        }
-        
-        .contact-detail a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .contact-detail a:hover {
-            color: #65a3ff;
-        }
-        
-        .message-form {
-            margin-top: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-        
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-        
-        input:focus, textarea:focus {
-            border-color: #c6e2ff;
-            outline: none;
-        }
-        
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        button {
-            background-color: #c6e2ff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            font-size: 1em;
-        }
-        
-        button:hover {
-            background-color: #a5d3ff;
-        }
-        
-        .map-container {
-            height: 300px;
-            width: 100%;
-            background-color: #f0f0f0;
-            margin-top: 30px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .map-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            text-align: center;
-            flex-direction: column;
-        }
-        
-        .map-marker {
-            width: 30px;
-            height: 30px;
-            background-color: #ffd6e0;
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            position: relative;
-            animation: bounce 1s infinite alternate;
-            margin-bottom: 15px;
-        }
-        
-        @keyframes bounce {
-            from {
-                transform: rotate(-45deg) translateY(0);
-            }
-            to {
-                transform: rotate(-45deg) translateY(-10px);
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -260,4 +68,79 @@
                             
                             <div class="contact-card">
                                 <h3>Send Us a Message</h3>
+                                <form id="contact-form" action="thank-you.html" method="get" onsubmit="return validateForm()">
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Your Email</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" id="subject" name="subject" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Message</label>
+                                        <textarea id="message" name="message" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <div class="map-marker"></div>
+                                <p>Boulder, Colorado</p>
+                                <p>Our Location</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
+                <div class="yellow-section">
+                    <p>Connect with us today to learn more about the Open Air/Open Heart Project!</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Open Air/Open Heart</p>
+        </footer>
+    </div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (name === '' || email === '' || subject === '' || message === '') {
+                alert('Please fill out all fields');
+                return false;
+            }
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+            
+            // Store form data in localStorage - this allows for data persistence on the thank you page
+            localStorage.setItem('contactName', name);
+            localStorage.setItem('contactEmail', email);
+            localStorage.setItem('contactSubject', subject);
+            localStorage.setItem('contactMessage', message);
+            
+            // In a real implementation, you would send this data to a server
+            // For HTML-only functionality, we'll redirect to a thank you page
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up/Sign In - Open Air/Open Heart Project</title>
+    <link rel="stylesheet" href="styles-page.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="cloud"></div>
+                    <span>LOGO</span>
+                    <div class="heart"></div>
+                </div>
+            </div>
+            <h1>Open Air/Open Heart Project</h1>
+        </header>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works-page.html">How it works</a></li>
+                <li><a href="sign-up-sign-in-page.html">Sign In/Sign Up</a></li>
+                <li><a href="data-display-page.html">Data Display</a></li>
+                <li><a href="about-us-page.html">About Us</a></li>
+                <li><a href="contact-page.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <div class="content-box full-width">
+                <div class="pink-section">
+                    <h2>Welcome to Open Air/Open Heart Community</h2>
+                    
+                    <div class="form-container">
+                        <div class="tab-container">
+                            <div class="tab active" id="sign-in-tab">Sign In</div>
+                            <div class="tab" id="sign-up-tab">Create Account</div>
+                        </div>
+                        
+                        <!-- Sign In Form -->
+                        <div class="form-content active" id="sign-in-form">
+                            <form action="data-display-page.html" method="get" onsubmit="return validateSignIn()">
+                                <div class="form-group">
+                                    <label for="signin-email">Email Address</label>
+                                    <input type="email" id="signin-email" name="email" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="signin-password">Password</label>
+                                    <input type="password" id="signin-password" name="password" required>
+                                </div>
+                                
+                                <div class="forgot-password">
+                                    <a href="#" onclick="showResetPassword()">Forgot password?</a>
+                                </div>
+                                
+                                <button type="submit">Sign In</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Sign Up Form -->

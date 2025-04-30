@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Open Air/Open Heart Project</title>
     <link rel="stylesheet" href="styles-page.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Header with Logo -->
-        <header>
-            <div class="logo-container">
+        <header role="banner">
+            <div class="logo-container" aria-label="Company logo">
                 <div class="logo">
-                    <div class="cloud"></div>
-                    <span>LOGO</span>
-                    <div class="heart"></div>
+                    <!-- Decorative cloud and heart can use aria-hidden -->
+                    <img src="cloud.png" alt="Cloud symbol" class="cloud" />
+                    <span class="visually-hidden">Open Air/Open Heart Logo</span>
+                    <img src="heart.png" alt="Heart symbol" class="heart" />
                 </div>
             </div>
             <h1>Open Air/Open Heart Project</h1>
@@ -24,7 +27,7 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="how-it-works-page.html">How it works</a></li>
+                <li><a href="how-it-works-page.html">How it Works</a></li>
                 <li><a href="sign-up-sign-in-page.html">Sign In/Sign Up</a></li>
                 <li><a href="data-display-page.html">Data Display</a></li>
                 <li><a href="about-us-page.html">About Us</a></li>
@@ -37,60 +40,74 @@
             <div class="content-box full-width">
                 <div class="pink-section">
                     <h2>About Open Air/Open Heart</h2>
-                    
+
                     <div class="mission-box">
                         <h3>Our Mission</h3>
-                        <p>Open Air/Open Heart aims to connect people through their most vital signs - creating meaningful connections by sharing our biological rhythms in real-time. We believe that technology can foster deeper human connections by allowing us to share our heartbeats and vital signs with loved ones, creating a new form of intimacy and understanding.</p>
+                        <p>Open Air/Open Heart aims to connect people through their most vital signs—creating meaningful
+                            bonds by sharing our biological rhythms in real time. We believe that technology can foster
+                            deeper human connections by allowing us to share our heartbeats and vital signs with loved
+                            ones, creating a new form of intimacy and understanding.</p>
                     </div>
-                    
+
                     <div class="vision-box">
                         <h3>Our Vision</h3>
-                        <p>We envision a world where technology doesn't separate us but instead creates new channels for authentic human connection. By sharing our heartbeats - the most fundamental rhythm of our lives - we can develop empathy, presence, and connection in ways never before possible.</p>
+                        <p>We envision a world where technology doesn't separate us but instead opens new channels for
+                            authentic connection. By sharing our heartbeats—the most fundamental rhythm of our lives—we
+                            can cultivate empathy, presence, and a deeper human bond.</p>
                     </div>
-                    
+
                     <h3>Our Story</h3>
                     <div class="timeline">
                         <div class="timeline-item left">
                             <div class="timeline-content">
                                 <h3>2024</h3>
-                                <p>Project conception: The idea of Open Air/Open Heart was born during a Christmas vacation retreat when the founder and his Daughter were visiting his mother(her grandmother) in New Jersey when our founder realized the power of connecting through our most fundamental rhythms.</p>
+                                <p>Project Conception: The idea for Open Air/Open Heart was born during a Christmas
+                                    vacation retreat. While visiting his mother (her grandmother) in New Jersey, the
+                                    founder and his daughter shared a powerful moment that inspired a new way of
+                                    connecting through our most natural rhythm—the heartbeat.</p>
                             </div>
                         </div>
                         <div class="timeline-item right">
                             <div class="timeline-content">
                                 <h3>2025</h3>
-                                <p>Development of our first prototype: Creating the technology to securely and accurately share vital sign data between trusted connections.</p>
+                                <p>Prototype Development: Our first prototype was built to securely and accurately share
+                                    vital sign data between trusted connections.</p>
                             </div>
                         </div>
                         <div class="timeline-item left">
                             <div class="timeline-content">
                                 <h3>Early 2025</h3>
-                                <p>Beta prototypying and sharing concept within tight close community groups, fine-tuning the experience of shared biological data, using the feedbacjk loop to develop research paths toward a better product design.</p>
+                                <p>Beta Testing: We shared the concept within close-knit community groups, gathering
+                                    feedback and refining the experience. This feedback loop helped us shape a
+                                    research-driven path toward a more thoughtful product design.</p>
                             </div>
                         </div>
                         <div class="timeline-item right">
                             <div class="timeline-content">
                                 <h3>Present</h3>
-                                <p>Official launch of Open Air/Open Heart to the public, beginning our journey of connecting humans at the most fundamental level - one heart beat at a time.</p>
+                                <p>Public Launch: Open Air/Open Heart officially opens to the world—starting our journey
+                                    of connecting people through the pulse of life, one heartbeat at a time.</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <h3>The Team</h3>
                     <div class="team-member">
                         <div class="member-photo">
                             <img src="images/George & Jude.jpg" alt="George & Jude">
                         </div>
                         <div class="member-info">
-                            <h3>George Patrick O'Connor</h3>
-                            <p>Project Developer</p>
-                            <p>George brings his background in both technology and mindfulness practices to create a platform that bridges the gap between digital connection and human intimacy.</p>
+                            <h3>Project Developer George Patrick O'Connor  &  Team Support Leader Jude Love O'Connor</h3>                            
+                            <p>George brings a unique blend of technology expertise and mindfulness practices to build a
+                                platform that bridges digital connection with authentic human experience. His Daughter, Jude Love adds unique perspective, wisdom and joy to the team dynamic adding immeasurable value to the project success.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="yellow-section">
-                    <p>Join us on this journey to create a new form of human connection! <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a></p>
+                    <p>Join us on this journey to create a new form of human connection! 
+                        <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a></p>
+                    <p>Have questions? Contact us at <a href="mailto:connect@openairheartproject.com">connect@openairheartproject.com</a></p>
                 </div>
             </div>
         </main>
@@ -98,14 +115,15 @@
         <!-- Footer -->
         <footer>
             <p>&copy; 2025 Open Air/Open Heart</p>
+            <p>Email: <a href="mailto:connect@heartopenai.com">connect@heartopenai.com</a></p>
         </footer>
     </div>
-    
+
     <script>
         // Simple animation for timeline items
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const timelineItems = document.querySelectorAll('.timeline-item');
-            
+
             timelineItems.forEach((item, index) => {
                 setTimeout(() => {
                     item.classList.add('fade-in');
@@ -114,4 +132,5 @@
         });
     </script>
 </body>
+
 </html>

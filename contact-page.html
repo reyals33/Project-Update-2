@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Open Air/Open Heart Project</title>
     <link rel="stylesheet" href="styles-page.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Header with Logo -->
-        <header>
-            <div class="logo-container">
+        <header role="banner">
+            <div class="logo-container" aria-label="Company logo">
                 <div class="logo">
-                    <div class="cloud"></div>
-                    <span>LOGO</span>
-                    <div class="heart"></div>
+                    <!-- Decorative cloud and heart can use aria-hidden -->
+                    <img src="cloud.png" alt="Cloud symbol" class="cloud" />
+                    <span class="visually-hidden">Open Air/Open Heart Logo</span>
+                    <img src="heart.png" alt="Heart symbol" class="heart" />
                 </div>
             </div>
             <h1>Open Air/Open Heart Project</h1>
@@ -37,7 +40,7 @@
             <div class="content-box full-width">
                 <div class="pink-section">
                     <h2>Contact Us</h2>
-                    
+
                     <div class="contact-container">
                         <div class="contact-info">
                             <div class="contact-card">
@@ -65,10 +68,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="contact-card">
                                 <h3>Send Us a Message</h3>
-                                <form id="contact-form" action="thank-you.html" method="get" onsubmit="return validateForm()">
+                                <form id="contact-form" action="thank-you.html" method="get"
+                                    onsubmit="return validateForm()">
                                     <div class="form-group">
                                         <label for="name">Your Name</label>
                                         <input type="text" id="name" name="name" required>
@@ -89,19 +93,18 @@
                                 </form>
                             </div>
                         </div>
-                        
-                        <div class="map-container">
-                            <div class="map-placeholder">
-                                <div class="map-marker"></div>
-                                <p>Boulder, Colorado</p>
-                                <p>Our Location</p>
-                            </div>
+
+                        <h3>Our Location: Boulder - Gunbarrel</h3>
+                        <div class="location-image">
+                            <img src="images/Location.jpg" alt="Boulder Gunbarrel Area" />
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="yellow-section">
-                    <p>Connect with us today to learn more about the Open Air/Open Heart Project!</p>
+                    <p>Connect with us today to learn more about the Open Air/Open Heart Project!</p>                    
+                    <p>Have questions? Contact us at <a href="mailto:connect@openairheartproject.com">connect@openairheartproject.com</a></p>
+                    <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a></p>
                 </div>
             </div>
         </main>
@@ -109,8 +112,14 @@
         <!-- Footer -->
         <footer>
             <p>&copy; 2025 Open Air/Open Heart</p>
+            <p>Email: <a href="mailto:connect@heartopenai.com">connect@heartopenai.com</a></p>
         </footer>
     </div>
+                </div>
+            </div>
+        </main>
+
+       
 
     <script>
         function validateForm() {
@@ -118,29 +127,30 @@
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
-            
+
             if (name === '' || email === '' || subject === '' || message === '') {
                 alert('Please fill out all fields');
                 return false;
             }
-            
+
             // Simple email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Please enter a valid email address');
                 return false;
             }
-            
+
             // Store form data in localStorage - this allows for data persistence on the thank you page
             localStorage.setItem('contactName', name);
             localStorage.setItem('contactEmail', email);
             localStorage.setItem('contactSubject', subject);
             localStorage.setItem('contactMessage', message);
+
             
-            // In a real implementation, you would send this data to a server
             // For HTML-only functionality, we'll redirect to a thank you page
             return true;
         }
     </script>
 </body>
+
 </html>

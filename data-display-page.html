@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Data - Open Air/Open Heart Project</title>
     <link rel="stylesheet" href="styles-page.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Header with Logo -->
-        <header>
-            <div class="logo-container">
+        <header role="banner">
+            <div class="logo-container" aria-label="Company logo">
                 <div class="logo">
-                    <div class="cloud"></div>
-                    <span>LOGO</span>
-                    <div class="heart"></div>
+                    <!-- Decorative cloud and heart can use aria-hidden -->
+                    <img src="cloud.png" alt="Cloud symbol" class="cloud" />
+                    <span class="visually-hidden">Open Air/Open Heart Logo</span>
+                    <img src="heart.png" alt="Heart symbol" class="heart" />
                 </div>
             </div>
             <h1>Open Air/Open Heart Project</h1>
         </header>
-
         <!-- Navigation Menu -->
         <nav>
             <ul>
@@ -37,12 +39,12 @@
             <div class="content-box full-width">
                 <div class="pink-section">
                     <h2>My Heart Data</h2>
-                    
+
                     <div class="tab-container">
                         <div class="tab active" id="my-data-tab">My Vitals</div>
                         <div class="tab" id="friend-network-tab">Friend Network</div>
                     </div>
-                    
+
                     <!-- My Data Content -->
                     <div class="data-content active" id="my-data-content">
                         <div class="data-container">
@@ -77,69 +79,88 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <h3>Historical Data</h3>
+
+                            <h3>Live Stream Data</h3>
                             <div class="chart-container">
                                 <div class="heart-rate-chart">
-                                    <h4>Heart Rate Trends</h4>
+                                    <h4>Heart Rate</h4>
                                     <div class="chart-legend">
                                         <div class="legend-item">
                                             <div class="legend-color hr-color"></div>
-                                            <div class="legend-text">Heart Rate</div>
+
                                         </div>
                                         <div class="legend-item">
                                             <div class="legend-color o2-color"></div>
                                             <div class="legend-text"></div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- New CSS-only heart rate monitor -->
                                     <div class="simple-heart-monitor">
                                         <!-- Heart rate line background -->
                                         <div class="monitor-background"></div>
-                                        
+
                                         <!-- Animated heart rate line -->
                                         <div class="heart-line"></div>
-                                        
+
                                         <!-- Status indicator -->
                                         <div class="monitor-status">
                                             <span class="status-dot"></span> LIVE | 72 BPM
                                         </div>
                                     </div>
-                                    
-                                    <div class="chart-grid">
-                                        <div class="y-axis">
-                                            <div class="y-tick">100</div>                                           
-                                           
-                                        </div>
-                                        <div class="x-axis">
-                                            <div class="x-tick">12am</div>                                            
-                                        </div>
-                                    </div>
+                                    <h1>Monthly Health Trends</h1>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Avg Heart Rate (bpm)</th>
+                                                <th>Avg O₂ Saturation (%)</th>
+                                                <th>Avg Temp (°F)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>May 29</td>
+                                                <td>72</td>
+                                                <td>98</td>
+                                                <td>98.6</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>April 29</td>
+                                                <td>74</td>
+                                                <td>97</td>
+                                                <td>98.4</td>
+                                            </tr>
+                                            <!-- Repeat similar rows for each day -->
+                                        </tbody>
+                                    </table>
+
                                 </div>
                             </div>
-                                                        
+
                         </div>
                     </div>
-                    
+
                     <!-- Friend Network Content -->
                     <div class="data-content" id="friend-network-content">
                         <div class="data-container">
                             <h3>Friend Heart Network</h3>
-                            <p>View your friends' current heart rates in real-time. Hover over a friend to see more details.</p>
-                            
+                            <p>View your friends' current heart rates in real-time. Hover over a friend to see more
+                                details.</p>
+
                             <div class="friend-network">
                                 <div class="network-circle"></div>
-                                
+
                                 <!-- Friend 1 -->
                                 <div class="friend friend-1" data-friend-id="ML">
                                     <div class="friend-heartbeat-container">
                                         <div class="friend-heart-line"></div>
                                     </div>
-                                    <div class="vitality-line"></div>                                    
-                                    <span>ML</span>
+                                    <div class="vitality-line"></div>
+                                    <span>GO</span>
                                     <div class="friend-tooltip">
-                                        <div class="friend-name">Mindy Lovette</div>
+                                        <div class="friend-name">George O'Connor</div>
                                         <div class="friend-stats">
                                             Heart Rate: 68 BPM<br>
                                             O2: 99%<br>
@@ -147,13 +168,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Friend 2 -->
                                 <div class="friend friend-2" data-friend-id="LM">
                                     <div class="friend-heartbeat-container">
                                         <div class="friend-heart-line"></div>
                                     </div>
-                                    <div class="vitality-line"></div>                                    
+                                    <div class="vitality-line"></div>
                                     <span>LM</span>
                                     <div class="friend-tooltip">
                                         <div class="friend-name">Lisa Mitchell</div>
@@ -164,13 +185,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Friend 3 -->
                                 <div class="friend friend-3" data-friend-id="RK">
                                     <div class="friend-heartbeat-container">
                                         <div class="friend-heart-line"></div>
                                     </div>
-                                    <div class="vitality-line"></div>                                    
+                                    <div class="vitality-line"></div>
                                     <span>RK</span>
                                     <div class="friend-tooltip">
                                         <div class="friend-name">Robert Kim</div>
@@ -181,13 +202,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Friend 4 -->
                                 <div class="friend friend-4" data-friend-id="AT">
                                     <div class="friend-heartbeat-container">
                                         <div class="friend-heart-line"></div>
                                     </div>
-                                    <div class="vitality-line"></div>                                    
+                                    <div class="vitality-line"></div>
                                     <span>AT</span>
                                     <div class="friend-tooltip">
                                         <div class="friend-name">Amy Thomas</div>
@@ -198,13 +219,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Friend 5 -->
                                 <div class="friend friend-5" data-friend-id="DP">
                                     <div class="friend-heartbeat-container">
                                         <div class="friend-heart-line"></div>
                                     </div>
-                                    <div class="vitality-line"></div>                                    
+                                    <div class="vitality-line"></div>
                                     <span>DP</span>
                                     <div class="friend-tooltip">
                                         <div class="friend-name">David Patel</div>
@@ -216,12 +237,14 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <p class="placeholder-text" style="margin-top: 20px">Note: This is a placeholder visualization. Real-time data will be implemented when backend systems are connected.</p>
+
+                            <p class="placeholder-text" style="margin-top: 20px">Note: This is a placeholder
+                                visualization. Real-time data will be implemented when backend systems are connected.
+                            </p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="yellow-section">
                     <p>Remember: Sharing your heartbeat creates meaningful connections!</p>
                 </div>
@@ -241,41 +264,41 @@
         const myDataContent = document.getElementById('my-data-content');
         const friendNetworkContent = document.getElementById('friend-network-content');
 
-        myDataTab.addEventListener('click', function() {
+        myDataTab.addEventListener('click', function () {
             myDataTab.classList.add('active');
             friendNetworkTab.classList.remove('active');
             myDataContent.classList.add('active');
             friendNetworkContent.classList.remove('active');
         });
 
-        friendNetworkTab.addEventListener('click', function() {
+        friendNetworkTab.addEventListener('click', function () {
             friendNetworkTab.classList.add('active');
             myDataTab.classList.remove('active');
             friendNetworkContent.classList.add('active');
             myDataContent.classList.remove('active');
         });
-        
+
         // Friend network interactions - CSS-only hover effects are defined in CSS
         // Add 3D tilt effect when mouse moves over the network
         const friendNetwork = document.querySelector('.friend-network');
         if (friendNetwork) {
-            friendNetwork.addEventListener('mousemove', function(e) {
+            friendNetwork.addEventListener('mousemove', function (e) {
                 const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
                 const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                
+
                 this.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-                
+
                 // Enhance depth of friends
                 const friends = document.querySelectorAll('.friend');
                 friends.forEach(friend => {
                     friend.style.transform = `translateZ(30px)`;
                 });
             });
-            
+
             // Reset transform when mouse leaves
-            friendNetwork.addEventListener('mouseleave', function() {
+            friendNetwork.addEventListener('mouseleave', function () {
                 this.style.transform = `rotateY(0deg) rotateX(0deg)`;
-                
+
                 // Reset friend transforms to original
                 const friends = document.querySelectorAll('.friend');
                 friends.forEach((friend, index) => {
@@ -294,14 +317,14 @@
                 });
             });
         }
-        
+
         // Add animation to trend line
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const trendLine = document.querySelector('.trend-line polyline');
             if (trendLine) {
                 trendLine.classList.add('animate-trend');
             }
-            
+
             // Add animation for temperature thermometers
             const thermometers = document.querySelectorAll('.thermometer');
             thermometers.forEach((thermometer, index) => {
@@ -312,4 +335,5 @@
         });
     </script>
 </body>
+
 </html>

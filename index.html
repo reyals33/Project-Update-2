@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Open Air/Open Heart Project</title>
-    <link rel="stylesheet" href="styles-page.css">
+    <link rel="stylesheet" href="styles-page.css" />
 </head>
+
 <body>
     <div class="container">
         <!-- Header with Logo -->
-        <header>
-            <div class="logo-container">
+        <header role="banner">
+            <div class="logo-container" aria-label="Company logo">
                 <div class="logo">
-                    <div class="cloud"></div>
-                    <span>LOGO</span>
-                    <div class="heart"></div>
+                    <!-- Decorative cloud and heart can use aria-hidden -->
+                    <img src="cloud.png" alt="Cloud symbol" class="cloud" />
+                    <span class="visually-hidden">Open Air/Open Heart Logo</span>
+                    <img src="heart.png" alt="Heart symbol" class="heart" />
                 </div>
             </div>
             <h1>Open Air/Open Heart Project</h1>
         </header>
 
         <!-- Navigation Menu -->
-        <nav>
+        <nav role="navigation" aria-label="Main menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="how-it-works-page.html">How it works</a></li>
@@ -35,54 +38,60 @@
         <!-- Main Content -->
         <main>
             <div class="content-box left">
-                <div class="pink-section">
-                    <!-- Content for left pink section -->
+                <section class="pink-section">
                     <h2>Welcome to Open Air/Open Heart</h2>
-                    <p>We're dedicated to connecting people together by sharing vital health stream data in real time with friends and loved ones</p>
-                </div>
-                <div class="green-section">
-                    <!-- Content for left green section -->
+                    <p>We're dedicated to connecting people together by sharing vital health stream data in real time
+                        with friends and loved ones.</p>
+                </section>
+                <section class="green-section">
                     <p>Join our network today and start feeling the worldwide pulse!</p>
-                </div>
+                </section>
             </div>
-            
+
             <div class="content-box right">
-                <div class="pink-section">
-                    <!-- Content for right pink section -->
+                <section class="pink-section">
                     <h2>Free Membership</h2>
-                    <p>Check out our links and sign up page to find opportunities to learn, support, and connect.</p>
-                </div>
-                <div class="yellow-section">
-                    <!-- Content for right yellow section -->
-                    <p>Learn how to receive your wireless heart monitor live stream device to get started. <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a></p>
-                </div>
+                    <p>Check out our links and sign-up page to find opportunities to learn, support, and connect.</p>
+                </section>
+                <section class="yellow-section">
+                    <p>
+                        Learn how to receive your wireless heart monitor live stream device to get started.
+                        <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a>
+                    </p>
+                </section>
             </div>
         </main>
 
         <!-- Security Feature Banner -->
-        <div class="content-box security-box">
-            <div class="security-section">
+        <div class="content-box security-box" role="region" aria-label="Security features">
+            <section class="security-section">
                 <h2>Enhanced Security Protocol</h2>
-                <p>Our wireless health monitoring devices employ advanced cyber security measures beyond HIPAA & government regulations ensuring your health data is super safe and secure for you and your loved ones.</p>
-            </div>
+                <p>
+                    Our wireless health monitoring devices employ advanced cybersecurity measures beyond HIPAA &
+                    government regulations ensuring your health data is super safe and secure for you and your loved
+                    ones. Our Initial product launch will be a wireless "Ring" you wear on your finger. This wireless 
+                    device will stream your Live Health data to our Secure Network where You can manage sharing Your 
+                    information via Your Highly Secured, Open-Air/Open-Heart account Global wide through the Cloud. Happy Hearts & Good Health. Enjoy!
+                </p>
+            </section>
         </div>
 
         <!-- Footer -->
-        <footer>
+        <footer role="contentinfo">
             <p>&copy; 2025 Open Air/Open Heart</p>
         </footer>
     </div>
-    
+
     <script>
         // Simple animation for the heart beat effect on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const securityBox = document.querySelector('.security-box');
             securityBox.classList.add('pulse-animation');
-            
             setTimeout(() => {
                 securityBox.classList.remove('pulse-animation');
             }, 2000);
         });
     </script>
 </body>
+
 </html>

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How It Works - Open Air/Open Heart Project</title>
     <link rel="stylesheet" href="styles-page.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Header with Logo -->
-        <header>
-            <div class="logo-container">
+        <header role="banner">
+            <div class="logo-container" aria-label="Company logo">
                 <div class="logo">
-                    <div class="cloud"></div>
-                    <span>LOGO</span>
-                    <div class="heart"></div>
+                    <!-- Decorative cloud and heart can use aria-hidden -->
+                    <img src="cloud.png" alt="Cloud symbol" class="cloud" />
+                    <span class="visually-hidden">Open Air/Open Heart Logo</span>
+                    <img src="heart.png" alt="Heart symbol" class="heart" />
                 </div>
             </div>
             <h1>Open Air/Open Heart Project</h1>
@@ -38,32 +41,40 @@
                 <div class="pink-section">
                     <h2>How It Works</h2>
                     <p>The Open Air/Open Heart Project connects community members through four simple steps:</p>
-                    
-                    <div class="steps">
-                        <div class="step">
+
+                    <div class="steps-boxes">
+                        <br>
+                        <div class="step-box">
                             <h3>1. Create an Account</h3>
-                            <p>Sign up with your email address and create a profile that enables you to stream your health data to others in the network.</p>
+                            <p>Sign up with your email address and create a profile that enables you to stream your
+                                health data to others in the network.</p>
                         </div>
-                        
-                        <div class="step">
+                        <br>
+                        <div class="step-box">
                             <h3>2. Customize your Preferences</h3>
-                            <p>Explore our customizable options in sharing your data safely with your chosen network.</p>
+                            <p>Explore our customizable options in sharing your data safely with your chosen network.
+                            </p>
                         </div>
-                        
-                        <div class="step">
+                        <br>
+                        <div class="step-box">
                             <h3>3. Connect & Participate</h3>
-                            <p>Choose which of your vital streams you would like to share with others and who in the network you would like to share with.</p>
+                            <p>Choose which of your vital streams you would like to share with others and who in the
+                                network you would like to share with.</p>
                         </div>
-                        
-                        <div class="step">
+                        <br>
+                        <div class="step-box">
                             <h3>4. Wear your wireless health monitor device</h3>
-                            <p>Safely stream your live health data to your chosen network and keep personal logs of your data.</p>
+                            <p>Wear Our Uniquely Designed Wireless device in the form of a Ring on Your finger - Safely
+                                stream your live health data to your chosen network and keep personal logs of your data.
+                            </p>
                         </div>
+
                     </div>
                 </div>
-                
+
                 <div class="green-section">
-                    <p>Ready to get started? <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a></p>
+                    <p>Ready to get started? <a href="sign-up-sign-in-page.html#sign-up" class="button">Sign Up Now</a>
+                    </p>
                 </div>
             </div>
         </main>
@@ -73,19 +84,16 @@
             <p>&copy; 2025 Open Air/Open Heart</p>
         </footer>
     </div>
-    
+
     <script>
         // Script to activate sign-up tab when clicking "Sign Up Now" button
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if the URL has a hash for sign-up
+        document.addEventListener('DOMContentLoaded', function () {
             if (window.location.hash === '#sign-up') {
-                // We're on the sign-up page with the sign-up hash
-                // This script will only run if we're on the sign-up-sign-in-page.html page
                 const signUpTab = document.getElementById('sign-up-tab');
                 const signInTab = document.getElementById('sign-in-tab');
                 const signUpForm = document.getElementById('sign-up-form');
                 const signInForm = document.getElementById('sign-in-form');
-                
+
                 if (signUpTab && signInTab && signUpForm && signInForm) {
                     signUpTab.classList.add('active');
                     signInTab.classList.remove('active');
@@ -96,4 +104,5 @@
         });
     </script>
 </body>
+
 </html>
